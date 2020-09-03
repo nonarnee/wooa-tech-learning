@@ -32,7 +32,25 @@ let weight: number = 72;
 // =================================================================
 
 // typealias vs interface ?
-// typescript 공식문서 훑어보자
+// Researching =====================================================
+//
+// * Interface의 Declaration Merging이 가장 큰 차이다.
+//
+//   => interface는 같은 이름으로 여러 번 선언을 해도 컴파일 시점에서 합쳐지기 때문에 확장성이 좋다.
+//      따라서, 일반적으로는 interface를 사용하고 union, tuple 등이 필요한 경우에만 type 별칭을
+//      사용하라는 TypeScript Handbook의 내용은 현재에도 유효하다.
+//   => declaration merging으로 확장할 수 있기 때문에, 외부에 노출해야 하는
+//      public API에 사용되는 타입은 항상 interface를 사용하여 작성해야 한다.
+//   => type 별칭으로 작성된 타입은 조금 더 제한적이기 때문에 private API같이 외부에 노출할 필요가 없는 경우에 사용하는 것이 좋다.
+//
+// * React Component의 Props와 State의 타입을 기술하려면 어떤 것이 좋을까?
+//
+//   => 일반적으로는 interface를 사용해도 무리가 없다.
+//   => React component를 사용하는데 declaration merging이나 implements는 필요 없다.
+//   => interface에 union이 사용되었다면 extends 할 수 없기 때문에 해당 경우에는 type 별칭을 사용해서 타입을 기술해야 한다.
+//
+// ref.) https://joonsungum.github.io/post/2019-02-25-typescript-interface-and-type-alias/
+// =================================================================
 
 // typescript는 javascript의 super set 이기 때문에
 // 문법의 큰 차이가 없어 배우기 쉽다
